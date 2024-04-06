@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using PixelmapLibrary;
 
 namespace PixelmapTestProgram;
@@ -18,6 +19,51 @@ public partial class Form1 : Form
 
     private void Form1_Paint(object sender, PaintEventArgs e)
     {
+        e.Graphics.Clear(Color.Red);
+        e.Graphics.DrawImage(_slowBitmap, 10, 10);
+        e.Graphics.DrawImage(_fastBitmap, 300, 10);
+    }
 
+    private void button1_Click(object sender, EventArgs e)
+    {
+        var s = new Stopwatch();
+        s.Start();
+        for (var y = 0; y < 256; y++)
+        {
+            for (var x = 0; x < 256; x++)
+            {
+                _slowBitmap.SetPixel(x, y, Color.FromArgb(255 - x, y, x));
+            }
+        }
+        s.Stop();
+        Text = s.Elapsed + "    ";
+        Refresh();
+
+        s.Reset();
+        s.Start();
+        _fastBitmapPixelmap.LockBits();
+        for (var y = 0; y < 256; y++)
+        {
+            for (var x = 0; x < 256; x++)
+            {
+                _fastBitmapPixelmap.SetPixel(x, y, Color.FromArgb(255 - x, y, x));
+            }
+        }
+        _fastBitmapPixelmap.UnlockBits();
+        s.Stop();
+        Text += s.Elapsed.ToString();
+        Refresh();
+
+        _fastBitmapPixelmap.LockBits();
+        for (var y = 0; y < 256; y++)
+        {
+            for (var x = 0; x < 256; x++)
+            {
+                _fastBitmapPixelmap.AddColor(x, y, -200, 200, 200);
+            }
+        }
+        _fastBitmapPixelmap.UnlockBits();
+
+        Refresh();
     }
 }
