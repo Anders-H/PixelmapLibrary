@@ -26,6 +26,7 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
+        // Draw the old way
         var s = new Stopwatch();
         s.Start();
         for (var y = 0; y < 256; y++)
@@ -39,6 +40,7 @@ public partial class Form1 : Form
         Text = s.Elapsed + "    ";
         Refresh();
 
+        // Using the pixelmap
         s.Reset();
         s.Start();
         _fastBitmapPixelmap.LockBits();
@@ -54,6 +56,8 @@ public partial class Form1 : Form
         Text += s.Elapsed.ToString();
         Refresh();
 
+
+        // Adding a cyan tint
         _fastBitmapPixelmap.LockBits();
         for (var y = 0; y < 256; y++)
         {
