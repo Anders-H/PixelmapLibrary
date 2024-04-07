@@ -67,7 +67,6 @@ public partial class Form1 : Form
             }
         }
         _fastBitmapPixelmap.UnlockBits();
-
         Refresh();
     }
 
@@ -77,5 +76,11 @@ public partial class Form1 : Form
         _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg");
         _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
         Invalidate();
+    }
+
+    private void button3_Click(object sender, EventArgs e)
+    {
+        var s1 = new Sprite24BitWithMask(8, 8);
+
     }
 }
