@@ -6,8 +6,8 @@ namespace PixelmapTestProgram;
 public partial class Form1 : Form
 {
     private readonly Bitmap _slowBitmap;
-    private readonly Bitmap _fastBitmap;
-    private readonly Pixelmap _fastBitmapPixelmap;
+    private Bitmap _fastBitmap;
+    private Pixelmap _fastBitmapPixelmap;
 
     public Form1()
     {
@@ -21,7 +21,7 @@ public partial class Form1 : Form
     {
         e.Graphics.Clear(Color.Red);
         e.Graphics.DrawImage(_slowBitmap, 10, 10);
-        e.Graphics.DrawImage(_fastBitmap, 300, 10);
+        e.Graphics.DrawImage(_fastBitmap, 275, 10);
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -69,5 +69,13 @@ public partial class Form1 : Form
         _fastBitmapPixelmap.UnlockBits();
 
         Refresh();
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+        _fastBitmap.Dispose();
+        _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg");
+        _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
+        Invalidate();
     }
 }

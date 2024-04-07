@@ -26,6 +26,22 @@ public class Pixelmap
     public static Bitmap CreateCompatibleBitmap(int width, int height) =>
         new(width, height, PixelFormat.Format24bppRgb);
 
+    public static Bitmap CreateCompatibleBitmap(string filename)
+    {
+        var bitmap = new Bitmap(filename);
+        var result = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format24bppRgb);
+
+        for (var y = 0; y < bitmap.Height; y++)
+        {
+            for (var x = 0; x < bitmap.Width; x++)
+            {
+                result.SetPixel(x, y, bitmap.GetPixel(x, y));
+            }
+        }
+
+        return result;
+    }
+
     public void LockBits()
     {
         var pixelCount = Width * Height;
@@ -48,8 +64,37 @@ public class Pixelmap
         return Color.FromArgb(r, g, b);
     }
 
+    public Color RangeSafeGetPixel(int x, int y)
+    {
+        if (x < 0 || y >= Width || y < 0 || y >= Height)
+            return Color.Black;
+
+        GetRgb(x, y, out var r, out var g, out var b);
+        return Color.FromArgb(r, g, b);
+    }
+
     public void GetRgb(int x, int y, out int r, out int g, out int b)
     {
+        var i = (y * Width + x) * 3;
+
+        if (i > _pixels!.Length - 3)
+            throw new IndexOutOfRangeException();
+
+        b = _pixels[i];
+        g = _pixels[i + 1];
+        r = _pixels[i + 2];
+    }
+
+    public void RangeSafeGetRgb(int x, int y, out int r, out int g, out int b)
+    {
+        if (x < 0 || y >= Width || y < 0 || y >= Height)
+        {
+            r = 0;
+            g = 0;
+            b = 0;
+            return;
+        }
+
         var i = (y * Width + x) * 3;
 
         if (i > _pixels!.Length - 3)
@@ -68,8 +113,30 @@ public class Pixelmap
         _pixels[i + 2] = color.R;
     }
 
+    public void RangeSafeSetPixel(int x, int y, Color color)
+    {
+        if (x < 0 || y >= Width || y < 0 || y >= Height)
+            return;
+
+        var i = (y * Width + x) * 3;
+        _pixels![i] = color.B;
+        _pixels[i + 1] = color.G;
+        _pixels[i + 2] = color.R;
+    }
+
     public void SetPixel(int x, int y, int r, int g, int b)
     {
+        var i = (y * Width + x) * 3;
+        _pixels![i] = (byte)b;
+        _pixels[i + 1] = (byte)g;
+        _pixels[i + 2] = (byte)r;
+    }
+
+    public void RangeSafeSetPixel(int x, int y, int r, int g, int b)
+    {
+        if (x < 0 || y >= Width || y < 0 || y >= Height)
+            return;
+
         var i = (y * Width + x) * 3;
         _pixels![i] = (byte)b;
         _pixels[i + 1] = (byte)g;
@@ -99,5 +166,13 @@ public class Pixelmap
             sb = 255;
 
         SetPixel(x, y, sr, sg, sb);
+    }
+
+    public void RangeSafeAddColor(int x, int y, int r, int g, int b)
+    {
+        if (x < 0 || y >= Width || y < 0 || y >= Height)
+            return;
+
+        AddColor(x, y, r, g, b);
     }
 }
