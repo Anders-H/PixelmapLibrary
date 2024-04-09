@@ -175,4 +175,16 @@ public class Pixelmap
 
         AddColor(x, y, r, g, b);
     }
+
+    public void DrawSprite(MonochromeSprite s, int x, int y, Color color)
+    {
+        for (var yp = 0; yp < s.Height; yp++)
+        {
+            for (var xp = 0; xp < s.Width; xp++)
+            {
+                if (s.Get(xp, yp))
+                    RangeSafeSetPixel(xp + x, yp + y, color);
+            }
+        }
+    }
 }

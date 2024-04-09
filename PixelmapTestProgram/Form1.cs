@@ -80,7 +80,16 @@ public partial class Form1 : Form
 
     private void button3_Click(object sender, EventArgs e)
     {
-        var s1 = new Sprite24BitWithMask(8, 8);
-
+        var s1 = new MonochromeSprite(8, 8);
+        s1.Set(1, 1);
+        s1.Set(1, 2);
+        s1.Set(2, 1);
+        s1.Set(2, 2);
+        _fastBitmapPixelmap.LockBits();
+        _fastBitmapPixelmap.DrawSprite(s1, 0, 0, Color.Black);
+        _fastBitmapPixelmap.DrawSprite(s1, 2, 2, Color.Red);
+        _fastBitmapPixelmap.DrawSprite(s1, 10, 10, Color.White);
+        _fastBitmapPixelmap.UnlockBits();
+        Invalidate();
     }
 }
