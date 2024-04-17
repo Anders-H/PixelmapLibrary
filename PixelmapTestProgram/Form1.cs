@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using PixelmapLibrary;
+using PixelmapLibrary.SpriteManagement;
 
 namespace PixelmapTestProgram;
 
@@ -8,12 +9,14 @@ public partial class Form1 : Form
     private readonly Bitmap _slowBitmap;
     private Bitmap _fastBitmap;
     private Pixelmap _fastBitmapPixelmap;
+    private readonly FontMonochromeSprite _fontMonochromeSprite;
 
     public Form1()
     {
         _slowBitmap = new Bitmap(256, 256);
         _fastBitmap = Pixelmap.CreateCompatibleBitmap(256, 256);
         _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
+        _fontMonochromeSprite = FontMonochromeSprite.Create();
         InitializeComponent();
     }
 
@@ -29,6 +32,7 @@ public partial class Form1 : Form
         // Draw the old way
         var s = new Stopwatch();
         s.Start();
+        
         for (var y = 0; y < 256; y++)
         {
             for (var x = 0; x < 256; x++)
@@ -36,14 +40,16 @@ public partial class Form1 : Form
                 _slowBitmap.SetPixel(x, y, Color.FromArgb(255 - x, y, x));
             }
         }
+
         s.Stop();
-        Text = s.Elapsed + "    ";
+        Text = s.Elapsed + @"    ";
         Refresh();
 
         // Using the pixelmap
         s.Reset();
         s.Start();
         _fastBitmapPixelmap.LockBits();
+        
         for (var y = 0; y < 256; y++)
         {
             for (var x = 0; x < 256; x++)
@@ -51,14 +57,15 @@ public partial class Form1 : Form
                 _fastBitmapPixelmap.SetPixel(x, y, Color.FromArgb(255 - x, y, x));
             }
         }
+
         _fastBitmapPixelmap.UnlockBits();
         s.Stop();
         Text += s.Elapsed.ToString();
         Refresh();
 
-
         // Adding a cyan tint
         _fastBitmapPixelmap.LockBits();
+
         for (var y = 0; y < 256; y++)
         {
             for (var x = 0; x < 256; x++)
@@ -66,6 +73,7 @@ public partial class Form1 : Form
                 _fastBitmapPixelmap.AddColor(x, y, -200, 200, 200);
             }
         }
+        
         _fastBitmapPixelmap.UnlockBits();
         Refresh();
     }
@@ -80,15 +88,24 @@ public partial class Form1 : Form
 
     private void button3_Click(object sender, EventArgs e)
     {
-        var s1 = new MonochromeSprite(8, 8);
+        var s1 = new MonochromeSprite(8, 8, 1);
         s1.Set(1, 1);
         s1.Set(1, 2);
         s1.Set(2, 1);
         s1.Set(2, 2);
         _fastBitmapPixelmap.LockBits();
-        _fastBitmapPixelmap.DrawSprite(s1, 0, 0, Color.Black);
-        _fastBitmapPixelmap.DrawSprite(s1, 2, 2, Color.Red);
-        _fastBitmapPixelmap.DrawSprite(s1, 10, 10, Color.White);
+        _fastBitmapPixelmap.DrawSprite(s1, 0, 0, 0, Color.Black);
+        _fastBitmapPixelmap.DrawSprite(s1, 0, 2, 2, Color.Red);
+        _fastBitmapPixelmap.DrawSprite(s1, 0, 10, 10, Color.White);
+        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 19, 100, 100, Color.White);
+        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 18, 110, 110, Color.Red);
+        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 17, 120, 120, Color.DarkCyan);
+        _fastBitmapPixelmap.UnlockBits();
+        Invalidate();
+
+        var f = FontMonochromeSprite.Create();
+        _fastBitmapPixelmap.LockBits();
+        _fastBitmapPixelmap.DrawSprite(f, 0, 30, 30, Color.Black);
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
     }

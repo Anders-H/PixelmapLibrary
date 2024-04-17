@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using PixelmapLibrary.SpriteManagement;
 
 namespace PixelmapLibrary;
 
@@ -176,8 +177,10 @@ public class Pixelmap
         AddColor(x, y, r, g, b);
     }
 
-    public void DrawSprite(MonochromeSprite s, int x, int y, Color color)
+    public void DrawSprite(MonochromeSprite s, int index, int x, int y, Color color)
     {
+        s.CurrentPlane = index;
+
         for (var yp = 0; yp < s.Height; yp++)
         {
             for (var xp = 0; xp < s.Width; xp++)
