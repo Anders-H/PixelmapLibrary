@@ -1,4 +1,6 @@
 ﻿using PixelmapLibrary.FontManagement;
+using System.Drawing;
+using System.Numerics;
 
 namespace PixelmapLibrary.SpriteManagement;
 
@@ -16,6 +18,7 @@ public class FontMonochromeSprite : MonochromeSprite
         var terminalFont = new TerminalFont();
         var result = new FontMonochromeSprite(terminalFont.Count);
         result.SetData(terminalFont);
+        result.CurrentPlane = 0;
         return result;
     }
 
@@ -37,4 +40,7 @@ public class FontMonochromeSprite : MonochromeSprite
             }
         }
     }
+
+    public void Draw(Pixelmap p, int plane, int x, int y, Color color) =>
+        p.DrawSprite(this, plane, x, y, color);
 }

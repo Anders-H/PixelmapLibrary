@@ -97,9 +97,12 @@ public partial class Form1 : Form
         _fastBitmapPixelmap.DrawSprite(s1, 0, 0, 0, Color.Black);
         _fastBitmapPixelmap.DrawSprite(s1, 0, 2, 2, Color.Red);
         _fastBitmapPixelmap.DrawSprite(s1, 0, 10, 10, Color.White);
-        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 19, 100, 100, Color.White);
-        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 18, 110, 110, Color.Red);
-        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 17, 120, 120, Color.DarkCyan);
+        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 30, 100, 100, Color.White);
+        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 31, 110, 110, Color.Red);
+        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 32, 120, 120, Color.DarkCyan);
+        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 33, 130, 130, Color.Indigo);
+        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 34, 140, 140, Color.Indigo);
+        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 35, 150, 150, Color.Indigo);
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
 

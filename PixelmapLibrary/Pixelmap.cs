@@ -177,9 +177,9 @@ public class Pixelmap
         AddColor(x, y, r, g, b);
     }
 
-    public void DrawSprite(MonochromeSprite s, int index, int x, int y, Color color)
+    public void DrawSprite(MonochromeSprite s, int plane, int x, int y, Color color)
     {
-        s.CurrentPlane = index;
+        s.CurrentPlane = plane;
 
         for (var yp = 0; yp < s.Height; yp++)
         {
