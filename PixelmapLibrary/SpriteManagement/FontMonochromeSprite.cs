@@ -1,6 +1,5 @@
 ﻿using PixelmapLibrary.FontManagement;
 using System.Drawing;
-using System.Numerics;
 
 namespace PixelmapLibrary.SpriteManagement;
 
@@ -43,4 +42,10 @@ public class FontMonochromeSprite : MonochromeSprite
 
     public void Draw(Pixelmap p, int plane, int x, int y, Color color) =>
         p.DrawSprite(this, plane, x, y, color);
+
+    public void Draw(Pixelmap p, char c, int x, int y, Color color)
+    {
+        var plane = _codePage.Index[c];
+        p.DrawSprite(this, plane, x, y, color);
+    }
 }

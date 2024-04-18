@@ -94,15 +94,18 @@ public partial class Form1 : Form
         s1.Set(2, 1);
         s1.Set(2, 2);
         _fastBitmapPixelmap.LockBits();
-        _fastBitmapPixelmap.DrawSprite(s1, 0, 0, 0, Color.Black);
-        _fastBitmapPixelmap.DrawSprite(s1, 0, 2, 2, Color.Red);
-        _fastBitmapPixelmap.DrawSprite(s1, 0, 10, 10, Color.White);
-        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 30, 100, 100, Color.White);
-        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 31, 110, 110, Color.Red);
-        _fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 32, 120, 120, Color.DarkCyan);
-        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 33, 130, 130, Color.Indigo);
-        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 34, 140, 140, Color.Indigo);
-        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 35, 150, 150, Color.Indigo);
+        //_fastBitmapPixelmap.DrawSprite(s1, 0, 0, 0, Color.Black);
+        //_fastBitmapPixelmap.DrawSprite(s1, 0, 2, 2, Color.Red);
+        //_fastBitmapPixelmap.DrawSprite(s1, 0, 10, 10, Color.White);
+        //_fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 30, 100, 100, Color.White);
+        //_fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 31, 110, 110, Color.Red);
+        //_fastBitmapPixelmap.DrawSprite(_fontMonochromeSprite, 32, 120, 120, Color.DarkCyan);
+        //_fontMonochromeSprite.Draw(_fastBitmapPixelmap, 33, 130, 130, Color.Indigo);
+        //_fontMonochromeSprite.Draw(_fastBitmapPixelmap, 34, 140, 140, Color.Indigo);
+        //_fontMonochromeSprite.Draw(_fastBitmapPixelmap, 35, 150, 150, Color.Indigo);
+        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'A', 160, 170, Color.GreenYellow);
+        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'b', 170, 180, Color.MediumBlue);
+        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'C', 180, 190, Color.Yellow);
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
 
