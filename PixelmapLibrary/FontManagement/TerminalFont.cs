@@ -2,18 +2,16 @@
 
 namespace PixelmapLibrary.FontManagement;
 
-public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
+public class TerminalFont : IReadOnlyDictionary<char, CharacterPixelMatrix>
 {
-    private readonly Dictionary<int, CharacterPixelMatrix> _data;
+    private readonly Dictionary<char, CharacterPixelMatrix> _data;
 
     public TerminalFont()
     {
-        var tcp = new TerminalCodePage();
-
-        _data = new Dictionary<int, CharacterPixelMatrix>
+        _data = new Dictionary<char, CharacterPixelMatrix>
         {
             {
-                tcp.Asc[' '], new CharacterPixelMatrix(
+                ' ', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,,,,,,," +
@@ -25,7 +23,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['@'], new CharacterPixelMatrix(
+                '@', new CharacterPixelMatrix(
                     ",,****,," +
                     ",*,,,,*," +
                     "*,,**,,*" +
@@ -37,7 +35,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['('], new CharacterPixelMatrix(
+                '(', new CharacterPixelMatrix(
                     ",,,,**,," +
                     ",,,**,,," +
                     ",,**,,,," +
@@ -49,7 +47,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc[')'], new CharacterPixelMatrix(
+                ')', new CharacterPixelMatrix(
                     ",,**,,,," +
                     ",,,**,,," +
                     ",,,,**,," +
@@ -61,7 +59,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['<'], new CharacterPixelMatrix(
+                '<', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,**,," +
                     ",,,**,,," +
@@ -73,7 +71,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['>'], new CharacterPixelMatrix(
+                '>', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,**,,,," +
                     ",,,**,,," +
@@ -85,7 +83,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['#'], new CharacterPixelMatrix(
+                '#', new CharacterPixelMatrix(
                     ",,*,,*,," +
                     ",******," +
                     ",,*,,*,," +
@@ -97,7 +95,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['$'], new CharacterPixelMatrix(
+                '$', new CharacterPixelMatrix(
                     ",,,**,,," +
                     ",,****,," +
                     ",**,,,,," +
@@ -109,7 +107,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['&'], new CharacterPixelMatrix(
+                '&', new CharacterPixelMatrix(
                     ",,,***,," +
                     ",,*,,,*," +
                     ",,*,,*'," +
@@ -121,7 +119,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc[':'], new CharacterPixelMatrix(
+                ':', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,,**,,," +
@@ -133,7 +131,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['+'], new CharacterPixelMatrix(
+                '+', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,**,,," +
                     ",,,**,,," +
@@ -145,7 +143,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['*'], new CharacterPixelMatrix(
+                '*', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,*,,,*," +
                     ",,,*,*,," +
@@ -157,7 +155,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['/'], new CharacterPixelMatrix(
+                '/', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,**,," +
                     ",,,,**,," +
@@ -169,7 +167,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['\\'], new CharacterPixelMatrix(
+                '\\', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,**,,,," +
                     ",,**,,,," +
@@ -181,7 +179,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['%'], new CharacterPixelMatrix(
+                '%', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     "**,,**,," +
                     "**,,**,," +
@@ -193,7 +191,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc[','], new CharacterPixelMatrix(
+                ',', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,,,,,,," +
@@ -205,7 +203,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc[';'], new CharacterPixelMatrix(
+                ';', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,,,,,,," +
@@ -217,7 +215,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['.'], new CharacterPixelMatrix(
+                '.', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,,,,,,," +
@@ -229,7 +227,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['"'], new CharacterPixelMatrix(
+                '"', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
                     ",,,,,,,," +
@@ -241,7 +239,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['\''], new CharacterPixelMatrix(
+                '\'', new CharacterPixelMatrix(
                     ",,,**,,," +
                     ",,,**,,," +
                     ",,,,,,,," +
@@ -253,7 +251,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['0'], new CharacterPixelMatrix(
+                '0', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,***," +
@@ -265,7 +263,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['!'], new CharacterPixelMatrix(
+                '!', new CharacterPixelMatrix(
                     ",,,**,,," +
                     ",,,**,,," +
                     ",,,**,,," +
@@ -277,7 +275,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['?'], new CharacterPixelMatrix(
+                '?', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",,,,,**," +
@@ -289,7 +287,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['1'], new CharacterPixelMatrix(
+                '1', new CharacterPixelMatrix(
                     ",,,**,,," +
                     ",,***,,," +
                     ",****,,," +
@@ -301,7 +299,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['2'], new CharacterPixelMatrix(
+                '2', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",,,, **," +
@@ -313,7 +311,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['3'], new CharacterPixelMatrix(
+                '3', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",,,,,**," +
@@ -325,7 +323,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['4'], new CharacterPixelMatrix(
+                '4', new CharacterPixelMatrix(
                     ",,,,***," +
                     ",,,****," +
                     ",,**,**," +
@@ -337,7 +335,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['5'], new CharacterPixelMatrix(
+                '5', new CharacterPixelMatrix(
                     ",******," +
                     ",**,,,,," +
                     ",**,,,,," +
@@ -349,7 +347,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['6'], new CharacterPixelMatrix(
+                '6', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,,,," +
@@ -361,7 +359,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['7'], new CharacterPixelMatrix(
+                '7', new CharacterPixelMatrix(
                     ",******," +
                     ",,,,,**," +
                     ",,,,,**," +
@@ -373,7 +371,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['8'], new CharacterPixelMatrix(
+                '8', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -385,7 +383,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['9'], new CharacterPixelMatrix(
+                '9', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -397,7 +395,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['A'], new CharacterPixelMatrix(
+                'A', new CharacterPixelMatrix(
                     ",,,**,,," +
                     ",,****,," +
                     ",**,,**," +
@@ -409,7 +407,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['a'], new CharacterPixelMatrix(
+                'a', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,****,," +
@@ -421,7 +419,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['B'], new CharacterPixelMatrix(
+                'B', new CharacterPixelMatrix(
                     ",*****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -433,7 +431,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['b'], new CharacterPixelMatrix(
+                'b', new CharacterPixelMatrix(
                     ",**,,,,," +
                     ",**,,,,," +
                     ",*****,," +
@@ -445,7 +443,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['C'], new CharacterPixelMatrix(
+                'C', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,,,," +
@@ -457,7 +455,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['c'], new CharacterPixelMatrix(
+                'c', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,****,," +
@@ -469,7 +467,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['D'], new CharacterPixelMatrix(
+                'D', new CharacterPixelMatrix(
                     ",****,,," +
                     ",**,**,," +
                     ",**,,**," +
@@ -481,7 +479,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['d'], new CharacterPixelMatrix(
+                'd', new CharacterPixelMatrix(
                     ",,,,,**," +
                     ",,,,,**," +
                     ",,*****," +
@@ -493,7 +491,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['E'], new CharacterPixelMatrix(
+                'E', new CharacterPixelMatrix(
                     ",******," +
                     ",**,,,,," +
                     ",**,,,,," +
@@ -505,7 +503,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['e'], new CharacterPixelMatrix(
+                'e', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,****,," +
@@ -517,7 +515,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['F'], new CharacterPixelMatrix(
+                'F', new CharacterPixelMatrix(
                     ",******," +
                     ",**,,,,," +
                     ",**,,,,," +
@@ -529,7 +527,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['f'], new CharacterPixelMatrix(
+                'f', new CharacterPixelMatrix(
                     ",,,****," +
                     ",,**,,,," +
                     ",,**,,,," +
@@ -541,7 +539,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['G'], new CharacterPixelMatrix(
+                'G', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,,,," +
@@ -553,7 +551,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['g'], new CharacterPixelMatrix(
+                'g', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,*****," +
@@ -565,7 +563,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['H'], new CharacterPixelMatrix(
+                'H', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
                     ",**,,**," +
@@ -577,7 +575,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['h'], new CharacterPixelMatrix(
+                'h', new CharacterPixelMatrix(
                     ",**,,,,," +
                     ",**,,,,," +
                     ",*****,," +
@@ -589,7 +587,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['I'], new CharacterPixelMatrix(
+                'I', new CharacterPixelMatrix(
                     ",,****,," +
                     ",,,**,,," +
                     ",,,**,,," +
@@ -601,7 +599,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['i'], new CharacterPixelMatrix(
+                'i', new CharacterPixelMatrix(
                     ",,,**,,," +
                     ",,,,,,,," +
                     ",,,**,,," +
@@ -613,7 +611,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['J'], new CharacterPixelMatrix(
+                'J', new CharacterPixelMatrix(
                     ",,,****," +
                     ",,,,,**," +
                     ",,,,,**," +
@@ -625,7 +623,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['j'], new CharacterPixelMatrix(
+                'j', new CharacterPixelMatrix(
                     ",,,,,**," +
                     ",,,,,,,," +
                     ",,,,,**," +
@@ -637,7 +635,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['K'], new CharacterPixelMatrix(
+                'K', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
                     ",**,**,," +
@@ -649,7 +647,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['k'], new CharacterPixelMatrix(
+                'k', new CharacterPixelMatrix(
                     ",**,,,,," +
                     ",**,,,,," +
                     ",**,,**," +
@@ -661,7 +659,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['L'], new CharacterPixelMatrix(
+                'L', new CharacterPixelMatrix(
                     ",**,,,,," +
                     ",**,,,,," +
                     ",**,,,,," +
@@ -673,7 +671,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['l'], new CharacterPixelMatrix(
+                'l', new CharacterPixelMatrix(
                     ",,***,,," +
                     ",,,**,,," +
                     ",,,**,,," +
@@ -685,7 +683,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['M'], new CharacterPixelMatrix(
+                'M', new CharacterPixelMatrix(
                     ",**,,,**" +
                     ",***,***" +
                     ",*******" +
@@ -697,7 +695,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['m'], new CharacterPixelMatrix(
+                'm', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",***,**," +
@@ -709,7 +707,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['N'], new CharacterPixelMatrix(
+                'N', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",***,**," +
                     ",******," +
@@ -721,7 +719,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['n'], new CharacterPixelMatrix(
+                'n', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",******," +
@@ -733,7 +731,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['O'], new CharacterPixelMatrix(
+                'O', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -745,7 +743,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['o'], new CharacterPixelMatrix(
+                'o', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,****,," +
@@ -757,7 +755,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['P'], new CharacterPixelMatrix(
+                'P', new CharacterPixelMatrix(
                     ",*****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -769,7 +767,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['p'], new CharacterPixelMatrix(
+                'p', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",*****,," +
@@ -781,7 +779,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['Q'], new CharacterPixelMatrix(
+                'Q', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -793,7 +791,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['q'], new CharacterPixelMatrix(
+                'q', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,*****," +
@@ -805,7 +803,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['R'], new CharacterPixelMatrix(
+                'R', new CharacterPixelMatrix(
                     ",*****,," +
                     ",**,,**," +
                     ",**,,**," +
@@ -817,7 +815,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['r'], new CharacterPixelMatrix(
+                'r', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",*****,," +
@@ -829,7 +827,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['S'], new CharacterPixelMatrix(
+                'S', new CharacterPixelMatrix(
                     ",,****,," +
                     ",**,,**," +
                     ",**,,,,," +
@@ -841,7 +839,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['s'], new CharacterPixelMatrix(
+                's', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,****,," +
@@ -853,7 +851,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['T'], new CharacterPixelMatrix(
+                'T', new CharacterPixelMatrix(
                     ",******," +
                     ",,,**,,," +
                     ",,,**,,," +
@@ -865,7 +863,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['t'], new CharacterPixelMatrix(
+                't', new CharacterPixelMatrix(
                     ",,**,,,," +
                     ",,**,,,," +
                     ",*****,," +
@@ -877,7 +875,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['U'], new CharacterPixelMatrix(
+                'U', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
                     ",**,,**," +
@@ -889,7 +887,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['u'], new CharacterPixelMatrix(
+                'u', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",**,,**," +
@@ -901,21 +899,9 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['V'], new CharacterPixelMatrix(
+                'V', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
-                    ",**,,**," +
-                    ",**,,**," +
-                    ",**,,**," +
-                    ",,****,," +
-                    ",,,**,,," +
-                    ",,,,,,,,"
-                )
-            },
-            {
-                tcp.Asc['v'], new CharacterPixelMatrix(
-                    ",,,,,,,," +
-                    ",,,,,,,," +
                     ",**,,**," +
                     ",**,,**," +
                     ",**,,**," +
@@ -925,7 +911,19 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['W'], new CharacterPixelMatrix(
+                'v', new CharacterPixelMatrix(
+                    ",,,,,,,," +
+                    ",,,,,,,," +
+                    ",**,,**," +
+                    ",**,,**," +
+                    ",**,,**," +
+                    ",,****,," +
+                    ",,,**,,," +
+                    ",,,,,,,,"
+                )
+            },
+            {
+                'W', new CharacterPixelMatrix(
                     ",**,,,**" +
                     ",**,,,**" +
                     ",**,,,**" +
@@ -937,7 +935,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['w'], new CharacterPixelMatrix(
+                'w', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",**,,,**" +
@@ -949,7 +947,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['X'], new CharacterPixelMatrix(
+                'X', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
                     ",,****,," +
@@ -961,7 +959,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['x'], new CharacterPixelMatrix(
+                'x', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",**,,**," +
@@ -973,7 +971,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['Y'], new CharacterPixelMatrix(
+                'Y', new CharacterPixelMatrix(
                     ",**,,**," +
                     ",**,,**," +
                     ",**,,**," +
@@ -985,7 +983,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['y'], new CharacterPixelMatrix(
+                'y', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",**,,**," +
@@ -997,7 +995,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['Z'], new CharacterPixelMatrix(
+                'Z', new CharacterPixelMatrix(
                     ",******," +
                     ",,,,,**," +
                     ",,,,**,," +
@@ -1009,7 +1007,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['z'], new CharacterPixelMatrix(
+                'z', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",******," +
@@ -1021,7 +1019,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['-'], new CharacterPixelMatrix(
+                '-', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",,,,,,,," +
@@ -1033,7 +1031,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
                 )
             },
             {
-                tcp.Asc['='], new CharacterPixelMatrix(
+                '=', new CharacterPixelMatrix(
                     ",,,,,,,," +
                     ",,,,,,,," +
                     ",******," +
@@ -1047,7 +1045,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
         };
     }
 
-    public IEnumerator<KeyValuePair<int, CharacterPixelMatrix>> GetEnumerator() =>
+    public IEnumerator<KeyValuePair<char, CharacterPixelMatrix>> GetEnumerator() =>
         _data.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() =>
@@ -1056,11 +1054,11 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
     public int Count =>
         _data.Count;
 
-    public bool ContainsKey(int key) =>
+    public bool ContainsKey(char key) =>
         _data.ContainsKey(key);
 
 #pragma warning disable CS8601 // Possible null reference assignment.
-    public bool TryGetValue(int key, out CharacterPixelMatrix value) =>
+    public bool TryGetValue(char key, out CharacterPixelMatrix value) =>
         _data.TryGetValue(key, out value);
 #pragma warning restore CS8601 // Possible null reference assignment.
 
@@ -1070,7 +1068,7 @@ public class TerminalFont : IReadOnlyDictionary<int, CharacterPixelMatrix>
     public CharacterPixelMatrix this[char key] =>
         _data[key];
 
-    public IEnumerable<int> Keys =>
+    public IEnumerable<char> Keys =>
         _data.Keys;
 
     public IEnumerable<CharacterPixelMatrix> Values =>
