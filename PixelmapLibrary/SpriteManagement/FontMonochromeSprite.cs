@@ -51,4 +51,13 @@ public class FontMonochromeSprite : MonochromeSprite
 
     public void Draw(Pixelmap p, char c, int x, int y, Color color) =>
         p.DrawSprite(this, _codePage.Asc[c], x, y, color);
+
+    public void Draw(Pixelmap p, string text, int x, int y, Color color)
+    {
+        foreach (var c in text)
+        {
+            p.DrawSprite(this, _codePage.Asc[c], x, y, color);
+            x += 8;
+        }
+    }
 }
