@@ -106,7 +106,7 @@ public partial class Form1 : Form
         _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'A', 160, 170, Color.DarkRed);
         _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'b', 170, 180, Color.MediumBlue);
         _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'C', 180, 190, Color.Yellow);
-        _fontMonochromeSprite.Draw(_fastBitmapPixelmap, "Hello world!", 10, 10, Color.White);
+        _fontMonochromeSprite.DrawOpaque(_fastBitmapPixelmap, "Hello world!", 10, 10, Color.White, Color.Black);
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
 

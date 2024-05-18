@@ -60,4 +60,19 @@ public class FontMonochromeSprite : MonochromeSprite
             x += 8;
         }
     }
+
+    public void DrawOpaque(Pixelmap p, int plane, int x, int y, Color foreColor, Color backColor) =>
+        p.DrawSpriteOpaque(this, plane, x, y, foreColor, backColor);
+
+    public void DrawOpaque(Pixelmap p, char c, int x, int y, Color foreColor, Color backColor) =>
+        p.DrawSpriteOpaque(this, _codePage.Asc[c], x, y, foreColor, backColor);
+
+    public void DrawOpaque(Pixelmap p, string text, int x, int y, Color foreColor, Color backColor)
+    {
+        foreach (var c in text)
+        {
+            p.DrawSpriteOpaque(this, _codePage.Asc[c], x, y, foreColor, backColor);
+            x += 8;
+        }
+    }
 }

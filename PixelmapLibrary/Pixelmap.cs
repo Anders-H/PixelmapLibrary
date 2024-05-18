@@ -190,4 +190,17 @@ public class Pixelmap
             }
         }
     }
+
+    public void DrawSpriteOpaque(MonochromeSprite s, int plane, int x, int y, Color foreColor, Color backColor)
+    {
+        s.CurrentPlane = plane;
+
+        for (var yp = 0; yp < s.Height; yp++)
+        {
+            for (var xp = 0; xp < s.Width; xp++)
+            {
+                RangeSafeSetPixel(xp + x, yp + y, s.Get(xp, yp) ? foreColor : backColor);
+            }
+        }
+    }
 }
