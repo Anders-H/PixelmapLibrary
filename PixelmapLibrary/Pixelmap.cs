@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using PixelmapLibrary.Analysers;
 using PixelmapLibrary.SpriteManagement;
 
 namespace PixelmapLibrary;
@@ -133,6 +134,13 @@ public class Pixelmap
         _pixels[i + 2] = (byte)r;
     }
 
+    public void Clear(Color color)
+    {
+        for (var y = 0; y < Height; y++)
+            for (var x = 0; x < Width; x++)
+                SetPixel(x, y, color);
+    }
+
     public void RangeSafeSetPixel(int x, int y, int r, int g, int b)
     {
         if (x < 0 || y >= Width || y < 0 || y >= Height)
@@ -203,4 +211,7 @@ public class Pixelmap
             }
         }
     }
+
+    public Histogram GetHistogram() =>
+        Histogram.Generate(_bitmap);
 }

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using PixelmapLibrary;
+using PixelmapLibrary.Analysers;
 using PixelmapLibrary.SpriteManagement;
 
 namespace PixelmapTestProgram;
@@ -23,8 +24,15 @@ public partial class Form1 : Form
     private void Form1_Paint(object sender, PaintEventArgs e)
     {
         e.Graphics.Clear(Color.Red);
+
+        using var slowBitmapHistogram = Histogram.Generate(_slowBitmap).GetBitmap();
+        using var fastBitmapHistogram = Histogram.Generate(_fastBitmap).GetBitmap();
+
         e.Graphics.DrawImage(_slowBitmap, 10, 10);
+        e.Graphics.DrawImage(slowBitmapHistogram, 10, 270);
+
         e.Graphics.DrawImage(_fastBitmap, 275, 10);
+        e.Graphics.DrawImage(fastBitmapHistogram, 275, 270);
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -70,7 +78,7 @@ public partial class Form1 : Form
         {
             for (var x = 0; x < 256; x++)
             {
-                _fastBitmapPixelmap.AddColor(x, y, -200, 200, 200);
+                _fastBitmapPixelmap.AddColor(x, y, -100, 100, 100);
             }
         }
         
