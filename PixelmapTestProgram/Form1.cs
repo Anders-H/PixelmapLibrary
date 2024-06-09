@@ -7,7 +7,7 @@ namespace PixelmapTestProgram;
 
 public partial class Form1 : Form
 {
-    private readonly Bitmap _slowBitmap;
+    private Bitmap _slowBitmap;
     private Bitmap _fastBitmap;
     private Pixelmap _fastBitmapPixelmap;
     private readonly FontMonochromeSprite _fontMonochromeSprite;
@@ -40,7 +40,7 @@ public partial class Form1 : Form
         // Draw the old way
         var s = new Stopwatch();
         s.Start();
-        
+
         for (var y = 0; y < 256; y++)
         {
             for (var x = 0; x < 256; x++)
@@ -57,7 +57,7 @@ public partial class Form1 : Form
         s.Reset();
         s.Start();
         _fastBitmapPixelmap.LockBits();
-        
+
         for (var y = 0; y < 256; y++)
         {
             for (var x = 0; x < 256; x++)
@@ -81,13 +81,16 @@ public partial class Form1 : Form
                 _fastBitmapPixelmap.AddColor(x, y, -100, 100, 100);
             }
         }
-        
+
         _fastBitmapPixelmap.UnlockBits();
         Refresh();
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
+        _slowBitmap.Dispose();
+        _slowBitmap = new Bitmap(@"..\..\..\..\testpicture2.jpg");
+
         _fastBitmap.Dispose();
         _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg");
         _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
@@ -123,5 +126,21 @@ public partial class Form1 : Form
         _fastBitmapPixelmap.DrawSprite(f, 0, 30, 30, Color.Black);
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+        _fastBitmapPixelmap.LockBits();
+
+        for (var y = 0; y < 256; y++)
+        {
+            for (var x = 0; x < 256; x++)
+            {
+                _fastBitmapPixelmap.SetPixel(x, y, Color.FromArgb(y, 0, 0));
+            }
+        }
+
+        _fastBitmapPixelmap.UnlockBits();
+        Refresh();
     }
 }

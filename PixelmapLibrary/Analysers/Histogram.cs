@@ -17,8 +17,7 @@ public class Histogram
         var bitmap = Pixelmap.CreateCompatibleBitmap(256, 100);
         var pixelmap = new Pixelmap(bitmap);
         pixelmap.LockBits();
-        pixelmap.Clear(Color.White);
-
+        pixelmap.Clear(Color.Black);
 
         for (var y = 0; y < 100; y++)
         {
@@ -29,13 +28,13 @@ public class Histogram
                 var b = (int)Math.Round(Blue[x]);
 
                 if (r >= y)
-                    pixelmap.AddColor(x, y, 0, -120, -120);
+                    pixelmap.AddColor(x, 99 - y, 140, 0, 0);
 
                 if (g >= y)
-                    pixelmap.AddColor(x, y, -120, 0, -120);
+                    pixelmap.AddColor(x, 99 - y, 0, 140, 0);
                 
                 if (b >= y)
-                    pixelmap.AddColor(x, y, -120, -120, 0);
+                    pixelmap.AddColor(x, 99 - y, 0, 0, 140);
             }
         }
 
@@ -58,19 +57,21 @@ public class Histogram
             }
         }
 
-        var highest = new float[3];
-        highest[0] = result.Red.MaxBy(x => x);
-        highest[1] = result.Green.MaxBy(x => x);
-        highest[2] = result.Blue.MaxBy(x => x);
-        var max = highest.MaxBy(x => x);
+        var highPoint = result.Red.Length - (result.Red.Length / 25);
+
+        var largeByColor = new double[3];
+        largeByColor[0] = result.Red.OrderBy(x => x).ToList()[highPoint];
+        largeByColor[1] = result.Green.OrderBy(x => x).ToList()[highPoint];
+        largeByColor[2] = result.Blue.OrderBy(x => x).ToList()[highPoint];
+        var large = largeByColor.MaxBy(x => x);
 
         for (var i = 0; i < 256; i++)
         {
-            var percent = (float)((result.Red[i] / max) * 100.0);
+            var percent = (float)((result.Red[i] / large) * 100.0);
             result.Red[i] = percent;
-            percent = (float)((result.Green[i] / max) * 100.0);
+            percent = (float)((result.Green[i] / large) * 100.0);
             result.Green[i] = percent;
-            percent = (float)((result.Blue[i] / max) * 100.0);
+            percent = (float)((result.Blue[i] / large) * 100.0);
             result.Blue[i] = percent;
         }
 
