@@ -185,6 +185,13 @@ public class Pixelmap
         AddColor(x, y, r, g, b);
     }
 
+    public void DrawSprite(StillImageSprite s, int x, int y)
+    {
+        for (var yp = 0; yp < s.Height; yp++)
+            for (var xp = 0; xp < s.Width; xp++)
+                    RangeSafeSetPixel(xp + x, yp + y, s.GetColor(xp, yp));
+    }
+
     public void DrawSprite(MonochromeSprite s, int plane, int x, int y, Color color)
     {
         s.CurrentPlane = plane;

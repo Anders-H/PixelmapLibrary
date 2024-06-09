@@ -10,6 +10,7 @@ public partial class Form1 : Form
     private Bitmap _slowBitmap;
     private Bitmap _fastBitmap;
     private Pixelmap _fastBitmapPixelmap;
+    private readonly StillImageSprite _niceStillColorSprite;
     private readonly FontMonochromeSprite _fontMonochromeSprite;
 
     public Form1()
@@ -18,6 +19,7 @@ public partial class Form1 : Form
         _fastBitmap = Pixelmap.CreateCompatibleBitmap(256, 256);
         _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
         _fontMonochromeSprite = FontMonochromeSprite.Create();
+        _niceStillColorSprite = new StillImageSprite(@"..\..\..\..\simplecolorsprite.jpg");
         InitializeComponent();
     }
 
@@ -118,6 +120,9 @@ public partial class Form1 : Form
         _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'b', 170, 180, Color.MediumBlue);
         _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'C', 180, 190, Color.Yellow);
         _fontMonochromeSprite.DrawOpaque(_fastBitmapPixelmap, "Hello world!", 10, 10, Color.White, Color.Black);
+        _fastBitmapPixelmap.DrawSprite(_niceStillColorSprite, 10, 50);
+        
+        
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
 

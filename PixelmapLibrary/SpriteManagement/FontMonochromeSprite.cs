@@ -28,7 +28,6 @@ public class FontMonochromeSprite : MonochromeSprite
             SetData(terminalFontKey, terminalFont);
         }
     }
-        
 
     private void SetData(char c, TerminalFont font)
     {
