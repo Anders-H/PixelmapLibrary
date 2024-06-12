@@ -16,8 +16,8 @@ public partial class Form1 : Form
     public Form1()
     {
         _slowBitmap = new Bitmap(256, 256);
-        _fastBitmap = Pixelmap.CreateCompatibleBitmap(256, 256);
-        _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
+        _fastBitmap = Pixelmap.CreateCompatibleBitmap(256, 256, BitDepth.Image32BitDepth);
+        _fastBitmapPixelmap = new Pixelmap(_fastBitmap, BitDepth.Image32BitDepth);
         _fontMonochromeSprite = FontMonochromeSprite.Create();
         _niceStillColorSprite = new StillImageSprite(@"..\..\..\..\simplecolorsprite.jpg");
         InitializeComponent();
@@ -27,8 +27,8 @@ public partial class Form1 : Form
     {
         e.Graphics.Clear(Color.Red);
 
-        using var slowBitmapHistogram = Histogram.Generate(_slowBitmap).GetBitmap();
-        using var fastBitmapHistogram = Histogram.Generate(_fastBitmap).GetBitmap();
+        using var slowBitmapHistogram = Histogram.Generate(_slowBitmap).GetBitmap(BitDepth.Image32BitDepth);
+        using var fastBitmapHistogram = Histogram.Generate(_fastBitmap).GetBitmap(BitDepth.Image32BitDepth);
 
         e.Graphics.DrawImage(_slowBitmap, 10, 10);
         e.Graphics.DrawImage(slowBitmapHistogram, 10, 270);
@@ -94,8 +94,8 @@ public partial class Form1 : Form
         _slowBitmap = new Bitmap(@"..\..\..\..\testpicture2.jpg");
 
         _fastBitmap.Dispose();
-        _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg");
-        _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
+        _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg", BitDepth.Image32BitDepth);
+        _fastBitmapPixelmap = new Pixelmap(_fastBitmap, BitDepth.Image32BitDepth);
         Invalidate();
     }
 
@@ -121,8 +121,8 @@ public partial class Form1 : Form
         _fontMonochromeSprite.Draw(_fastBitmapPixelmap, 'C', 180, 190, Color.Yellow);
         _fontMonochromeSprite.DrawOpaque(_fastBitmapPixelmap, "Hello world!", 10, 10, Color.White, Color.Black);
         _fastBitmapPixelmap.DrawSprite(_niceStillColorSprite, 10, 50);
-        
-        
+
+
         _fastBitmapPixelmap.UnlockBits();
         Invalidate();
 
@@ -147,5 +147,10 @@ public partial class Form1 : Form
 
         _fastBitmapPixelmap.UnlockBits();
         Refresh();
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+
     }
 }
