@@ -7,7 +7,6 @@ namespace PixelmapTestProgram;
 
 public partial class Form1 : Form
 {
-    public static BitDepth BitDepth = BitDepth.Image32BitDepth;
     private Bitmap _slowBitmap;
     private Bitmap _fastBitmap;
     private Pixelmap _fastBitmapPixelmap;
@@ -17,8 +16,8 @@ public partial class Form1 : Form
     public Form1()
     {
         _slowBitmap = new Bitmap(256, 256);
-        _fastBitmap = Pixelmap.CreateCompatibleBitmap(256, 256, BitDepth);
-        _fastBitmapPixelmap = new Pixelmap(_fastBitmap, BitDepth);
+        _fastBitmap = Pixelmap.CreateCompatibleBitmap(256, 256);
+        _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
         _fontMonochromeSprite = FontMonochromeSprite.Create();
         _niceStillColorSprite = new StillImageSprite(@"..\..\..\..\simplecolorsprite.jpg");
         InitializeComponent();
@@ -28,14 +27,17 @@ public partial class Form1 : Form
     {
         e.Graphics.Clear(Color.Red);
 
-        using var slowBitmapHistogram = Histogram.Generate(_slowBitmap).GetBitmap(BitDepth);
-        using var fastBitmapHistogram = Histogram.Generate(_fastBitmap).GetBitmap(BitDepth);
+        using var slowBitmapHistogram = Histogram.Generate(_slowBitmap).GetBitmap();
+        using var fastBitmapHistogram = Histogram.Generate(_fastBitmap).GetBitmap();
 
         e.Graphics.DrawImage(_slowBitmap, 10, 10);
         e.Graphics.DrawImage(slowBitmapHistogram, 10, 270);
 
         e.Graphics.DrawImage(_fastBitmap, 275, 10);
         e.Graphics.DrawImage(fastBitmapHistogram, 275, 270);
+
+        using var b = new SolidBrush(Color.FromArgb(127, 0, 0, 0));
+        e.Graphics.FillRectangle(b, 100, 100, 700, 700);
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -95,8 +97,8 @@ public partial class Form1 : Form
         _slowBitmap = new Bitmap(@"..\..\..\..\testpicture2.jpg");
 
         _fastBitmap.Dispose();
-        _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg", BitDepth);
-        _fastBitmapPixelmap = new Pixelmap(_fastBitmap, BitDepth);
+        _fastBitmap = Pixelmap.CreateCompatibleBitmap(@"..\..\..\..\testpicture.jpg");
+        _fastBitmapPixelmap = new Pixelmap(_fastBitmap);
         Invalidate();
     }
 

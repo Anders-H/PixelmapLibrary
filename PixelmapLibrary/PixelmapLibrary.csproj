@@ -8,11 +8,11 @@
     <Title>Pixelmap Library</Title>
     <Description>A simple and fast pixelmap library.</Description>
     <RepositoryUrl>https://github.com/Anders-H/PixelmapLibrary</RepositoryUrl>
-    <AssemblyVersion>1.4.0</AssemblyVersion>
-    <FileVersion>1.4.0</FileVersion>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <FileVersion>1.5.0</FileVersion>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageReleaseNotes>Better 24 bit support in progress.</PackageReleaseNotes>
-    <Version>1.4.0</Version>
+    <PackageReleaseNotes>Sorry, had to give up 32 bit support for now.</PackageReleaseNotes>
+    <Version>1.5.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

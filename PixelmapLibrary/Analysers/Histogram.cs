@@ -12,10 +12,10 @@ public class Histogram
     {
     }
 
-    public Bitmap GetBitmap(BitDepth bitDepth)
+    public Bitmap GetBitmap()
     {
-        var bitmap = Pixelmap.CreateCompatibleBitmap(256, 100, bitDepth);
-        var pixelmap = new Pixelmap(bitmap, bitDepth);
+        var bitmap = Pixelmap.CreateCompatibleBitmap(256, 100);
+        var pixelmap = new Pixelmap(bitmap);
         pixelmap.LockBits();
         pixelmap.Clear(Color.Black);
 

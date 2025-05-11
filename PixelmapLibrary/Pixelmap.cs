@@ -12,15 +12,13 @@ public class Pixelmap
     private IntPtr _dataPointer;
     private BitmapData? _data;
     private byte[]? _pixels;
-    private readonly BitDepth _bitDepth;
-    private readonly int _bytesPerPixel;
+    internal const PixelFormat Format = PixelFormat.Format24bppRgb;
+    private const int BytesPerPixel = 3;
     public int Width { get; }
     public int Height { get; }
 
-    public Pixelmap(Bitmap bitmap, BitDepth bitDepth)
+    public Pixelmap(Bitmap bitmap)
     {
-        _bitDepth = bitDepth;
-        _bytesPerPixel = bitDepth == BitDepth.Image24BitDepth ? 3 : 4;
         _bitmap = bitmap;
         _pixels = null;
         _dataPointer = IntPtr.Zero;
@@ -29,13 +27,13 @@ public class Pixelmap
         Height = _bitmap.Height;
     }
 
-    public static Bitmap CreateCompatibleBitmap(int width, int height, BitDepth bitDepth) =>
-        new(width, height, bitDepth == BitDepth.Image24BitDepth ? PixelFormat.Format24bppRgb : PixelFormat.Format32bppArgb);
+    public static Bitmap CreateCompatibleBitmap(int width, int height) =>
+        new(width, height, Format);
 
-    public static Bitmap CreateCompatibleBitmap(string filename, BitDepth bitDepth)
+    public static Bitmap CreateCompatibleBitmap(string filename)
     {
         var bitmap = new Bitmap(filename);
-        var result = new Bitmap(bitmap.Width, bitmap.Height, bitDepth == BitDepth.Image24BitDepth ? PixelFormat.Format24bppRgb : PixelFormat.Format32bppArgb);
+        var result = new Bitmap(bitmap.Width, bitmap.Height, Format);
 
         for (var y = 0; y < bitmap.Height; y++)
         {
@@ -53,7 +51,7 @@ public class Pixelmap
         var pixelCount = Width * Height;
         var rect = new Rectangle(0, 0, Width, Height);
         _data = _bitmap.LockBits(rect, ImageLockMode.ReadWrite, _bitmap.PixelFormat);
-        _pixels = new byte[pixelCount * _bytesPerPixel];
+        _pixels = new byte[pixelCount * BytesPerPixel];
         _dataPointer = _data.Scan0;
         Marshal.Copy(_dataPointer, _pixels, 0, _pixels.Length);
     }
@@ -81,9 +79,9 @@ public class Pixelmap
 
     public void GetRgb(int x, int y, out int r, out int g, out int b)
     {
-        var i = (y * Width + x) * _bytesPerPixel;
+        var i = (y * Width + x) * BytesPerPixel;
 
-        if (i > _pixels!.Length - _bytesPerPixel)
+        if (i > _pixels!.Length - BytesPerPixel)
             throw new IndexOutOfRangeException();
 
         b = _pixels[i];
@@ -101,9 +99,9 @@ public class Pixelmap
             return;
         }
 
-        var i = (y * Width + x) * _bytesPerPixel;
+        var i = (y * Width + x) * BytesPerPixel;
 
-        if (i > _pixels!.Length - _bytesPerPixel)
+        if (i > _pixels!.Length - BytesPerPixel)
             throw new IndexOutOfRangeException();
 
         b = _pixels[i];
@@ -113,7 +111,7 @@ public class Pixelmap
 
     public void SetPixel(int x, int y, Color color)
     {
-        var i = (y * Width + x) * _bytesPerPixel;
+        var i = (y * Width + x) * BytesPerPixel;
         _pixels![i] = color.B;
         _pixels[i + 1] = color.G;
         _pixels[i + 2] = color.R;
@@ -124,7 +122,7 @@ public class Pixelmap
         if (x < 0 || y >= Width || y < 0 || y >= Height)
             return;
 
-        var i = (y * Width + x) * _bytesPerPixel;
+        var i = (y * Width + x) * BytesPerPixel;
         _pixels![i] = color.B;
         _pixels[i + 1] = color.G;
         _pixels[i + 2] = color.R;
@@ -132,7 +130,7 @@ public class Pixelmap
 
     public void SetPixel(int x, int y, int r, int g, int b)
     {
-        var i = (y * Width + x) * _bytesPerPixel;
+        var i = (y * Width + x) * BytesPerPixel;
         _pixels![i] = (byte)b;
         _pixels[i + 1] = (byte)g;
         _pixels[i + 2] = (byte)r;
@@ -150,7 +148,7 @@ public class Pixelmap
         if (x < 0 || y >= Width || y < 0 || y >= Height)
             return;
 
-        var i = (y * Width + x) * _bytesPerPixel;
+        var i = (y * Width + x) * BytesPerPixel;
         _pixels![i] = (byte)b;
         _pixels[i + 1] = (byte)g;
         _pixels[i + 2] = (byte)r;
