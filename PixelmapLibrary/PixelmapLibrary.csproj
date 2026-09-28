@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Title>Pixelmap Library</Title>
     <Description>A simple and fast pixelmap library.</Description>
     <RepositoryUrl>https://github.com/Anders-H/PixelmapLibrary</RepositoryUrl>
-    <AssemblyVersion>1.5.0</AssemblyVersion>
-    <FileVersion>1.5.0</FileVersion>
+    <AssemblyVersion>1.6.0</AssemblyVersion>
+    <FileVersion>1.6.0</FileVersion>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageReleaseNotes>Sorry, had to give up 32 bit support for now.</PackageReleaseNotes>
-    <Version>1.5.0</Version>
+    <PackageReleaseNotes>Moved to .NET 10 and added a separate package for .NET Framework 4.8.</PackageReleaseNotes>
+    <Version>1.6.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

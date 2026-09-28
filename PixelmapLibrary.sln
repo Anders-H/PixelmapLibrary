@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34601.278
+# Visual Studio Version 18
+VisualStudioVersion = 18.11.12217.175 insiders
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelmapLibrary", "PixelmapLibrary\PixelmapLibrary.csproj", "{FE823468-E4BC-4910-876C-1BA7BCADFA7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelmapTestProgram", "PixelmapTestProgram\PixelmapTestProgram.csproj", "{FB5D1030-27D9-4648-A295-B1D902145085}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelmapLibraryNetFramework", "PixelmapLibraryNetFramework\PixelmapLibraryNetFramework.csproj", "{856E563F-6183-4CC2-A6CC-4818FE82A5C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FB5D1030-27D9-4648-A295-B1D902145085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB5D1030-27D9-4648-A295-B1D902145085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB5D1030-27D9-4648-A295-B1D902145085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{856E563F-6183-4CC2-A6CC-4818FE82A5C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{856E563F-6183-4CC2-A6CC-4818FE82A5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{856E563F-6183-4CC2-A6CC-4818FE82A5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{856E563F-6183-4CC2-A6CC-4818FE82A5C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
