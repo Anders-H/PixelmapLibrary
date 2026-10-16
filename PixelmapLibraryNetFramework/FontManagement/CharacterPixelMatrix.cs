@@ -1,4 +1,4 @@
-﻿namespace PixelmapLibraryNetFramework.FontManagement;
+namespace PixelmapLibraryNetFramework.FontManagement;
 
 public class CharacterPixelMatrix
 {
@@ -14,7 +14,7 @@ public class CharacterPixelMatrix
         {
             for (var x = 0; x < 8; x++)
             {
-                Pixels[x, y] = data.Substring(index, 1) == "*";
+                Pixels[x, y] = data[index] == '*';
                 index++;
             }
         }

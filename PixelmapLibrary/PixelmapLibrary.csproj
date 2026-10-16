@@ -11,12 +11,12 @@
     <AssemblyVersion>1.6.0</AssemblyVersion>
     <FileVersion>1.6.0</FileVersion>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageReleaseNotes>Moved to .NET 10 and added a separate package for .NET Framework 4.8.</PackageReleaseNotes>
-    <Version>1.6.0</Version>
+    <PackageReleaseNotes>Some minor fixes.</PackageReleaseNotes>
+    <Version>1.6.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.12" />
   </ItemGroup>
 
 </Project>

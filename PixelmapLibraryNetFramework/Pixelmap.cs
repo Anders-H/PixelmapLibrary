@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,7 +10,6 @@ namespace PixelmapLibraryNetFramework;
 public class Pixelmap
 {
     private readonly Bitmap _bitmap;
-    private IntPtr _dataPointer;
     private BitmapData? _data;
     private byte[]? _pixels;
     internal const PixelFormat Format = PixelFormat.Format24bppRgb;
@@ -20,9 +19,13 @@ public class Pixelmap
 
     public Pixelmap(Bitmap bitmap)
     {
+        if (bitmap == null)
+            throw new ArgumentNullException(nameof(bitmap));
+        if (bitmap.PixelFormat != Format)
+            throw new ArgumentException("Bitmap must use Format24bppRgb. Use CreateCompatibleBitmap to convert images.", nameof(bitmap));
+
         _bitmap = bitmap;
         _pixels = null;
-        _dataPointer = IntPtr.Zero;
         _data = null;
         Width = _bitmap.Width;
         Height = _bitmap.Height;
@@ -33,34 +36,63 @@ public class Pixelmap
 
     public static Bitmap CreateCompatibleBitmap(string filename)
     {
-        var bitmap = new Bitmap(filename);
+        using var bitmap = new Bitmap(filename);
         var result = new Bitmap(bitmap.Width, bitmap.Height, Format);
-
-        for (var y = 0; y < bitmap.Height; y++)
+        try
         {
-            for (var x = 0; x < bitmap.Width; x++)
-            {
-                result.SetPixel(x, y, bitmap.GetPixel(x, y));
-            }
+            using var graphics = Graphics.FromImage(result);
+            graphics.Clear(Color.Black);
+            graphics.DrawImageUnscaled(bitmap, 0, 0);
+            return result;
         }
-
-        return result;
+        catch
+        {
+            result.Dispose();
+            throw;
+        }
     }
 
     public void LockBits()
     {
-        var pixelCount = Width * Height;
+        if (_data != null)
+            throw new InvalidOperationException("Bitmap is already locked.");
+
+        var rowBytes = checked(Width * BytesPerPixel);
+        var pixels = new byte[checked(rowBytes * Height)];
         var rect = new Rectangle(0, 0, Width, Height);
-        _data = _bitmap.LockBits(rect, ImageLockMode.ReadWrite, _bitmap.PixelFormat);
-        _pixels = new byte[pixelCount * BytesPerPixel];
-        _dataPointer = _data.Scan0;
-        Marshal.Copy(_dataPointer, _pixels, 0, _pixels.Length);
+        var data = _bitmap.LockBits(rect, ImageLockMode.ReadWrite, Format);
+        try
+        {
+            for (var y = 0; y < Height; y++)
+                Marshal.Copy(IntPtr.Add(data.Scan0, checked(y * data.Stride)), pixels, y * rowBytes, rowBytes);
+            _pixels = pixels;
+            _data = data;
+        }
+        catch
+        {
+            _bitmap.UnlockBits(data);
+            throw;
+        }
     }
 
     public void UnlockBits()
     {
-        Marshal.Copy(_pixels!, 0, _dataPointer, _pixels!.Length);
-        _bitmap.UnlockBits(_data!);
+        if (_data == null)
+            throw new InvalidOperationException("Bitmap is not locked.");
+
+        var data = _data;
+        try
+        {
+            var rowBytes = checked(Width * BytesPerPixel);
+            for (var y = 0; y < Height; y++)
+                Marshal.Copy(_pixels!, y * rowBytes, IntPtr.Add(data.Scan0, checked(y * data.Stride)), rowBytes);
+        }
+        finally
+        {
+            _bitmap.UnlockBits(data);
+            _data = null;
+            _pixels = null;
+        }
     }
 
     public Color GetPixel(int x, int y)
@@ -71,7 +103,7 @@ public class Pixelmap
 
     public Color RangeSafeGetPixel(int x, int y)
     {
-        if (x < 0 || y >= Width || y < 0 || y >= Height)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
             return Color.Black;
 
         GetRgb(x, y, out var r, out var g, out var b);
@@ -92,7 +124,7 @@ public class Pixelmap
 
     public void RangeSafeGetRgb(int x, int y, out int r, out int g, out int b)
     {
-        if (x < 0 || y >= Width || y < 0 || y >= Height)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
         {
             r = 0;
             g = 0;
@@ -120,7 +152,7 @@ public class Pixelmap
 
     public void RangeSafeSetPixel(int x, int y, Color color)
     {
-        if (x < 0 || y >= Width || y < 0 || y >= Height)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
             return;
 
         var i = (y * Width + x) * BytesPerPixel;
@@ -146,7 +178,7 @@ public class Pixelmap
 
     public void RangeSafeSetPixel(int x, int y, int r, int g, int b)
     {
-        if (x < 0 || y >= Width || y < 0 || y >= Height)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
             return;
 
         var i = (y * Width + x) * BytesPerPixel;
@@ -182,7 +214,7 @@ public class Pixelmap
 
     public void RangeSafeAddColor(int x, int y, int r, int g, int b)
     {
-        if (x < 0 || y >= Width || y < 0 || y >= Height)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
             return;
 
         AddColor(x, y, r, g, b);

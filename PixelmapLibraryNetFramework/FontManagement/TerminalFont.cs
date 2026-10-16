@@ -87,13 +87,13 @@ public class TerminalFont : IReadOnlyDictionary<char, CharacterPixelMatrix>
             },
             {
                 '#', new CharacterPixelMatrix(
-                    ",,*,,*,," +
-                    ",******," +
-                    ",,*,,*,," +
-                    ",,*,,*,," +
-                    ",,*,,*,," +
-                    ",******," +
-                    ",,*,,*,," +
+                    ",,**,**," +
+                    ",*******" +
+                    ",,**,**," +
+                    ",,**,**," +
+                    ",,**,**," +
+                    ",*******" +
+                    ",,**,**," +
                     ",,,,,,,,"
                 )
             },
@@ -111,13 +111,13 @@ public class TerminalFont : IReadOnlyDictionary<char, CharacterPixelMatrix>
             },
             {
                 '&', new CharacterPixelMatrix(
-                    ",,,***,," +
-                    ",,*,,,*," +
-                    ",,*,,*'," +
-                    ",,,**,,," +
-                    ",,*,*,*," +
-                    ",*,,,*,," +
-                    ",,***,*," +
+                    ",,****,," +
+                    ",**,,**," +
+                    ",,****,," +
+                    ",****,,," +
+                    ",**,,***" +
+                    ",**,,**," +
+                    ",,******" +
                     ",,,,,,,,"
                 )
             },
@@ -148,11 +148,11 @@ public class TerminalFont : IReadOnlyDictionary<char, CharacterPixelMatrix>
             {
                 '*', new CharacterPixelMatrix(
                     ",,,,,,,," +
-                    ",,*,,,*," +
-                    ",,,*,*,," +
-                    ",,*****," +
-                    ",,,*,*,," +
-                    ",,*,,,*," +
+                    ",**,,**," +
+                    ",,****,," +
+                    "********" +
+                    ",,****,," +
+                    ",**,,**," +
                     ",,,,,,,," +
                     ",,,,,,,,"
                 )
